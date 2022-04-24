@@ -13,6 +13,6 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/{id}', [UserController::class,'index']);
-Route::get('/hello',[UserController::class,'hello']);
-Route::resource('author',AuthorController::class);
+Route::get('/id/{id}', [UserController::class,'index']);
+//Route::get('/hello',[UserController::class,'hello']);
+//Route::resource('author',AuthorController::class);

@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index($id){
-       return view('User.user_view',compact('id'));
-    }
+//    public function index($id){
+//       return view('User.user_view',compact('id'));
+//    }
 
 }

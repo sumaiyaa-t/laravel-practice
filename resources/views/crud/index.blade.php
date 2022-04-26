@@ -12,8 +12,9 @@
     <thead>
     <tr>
         <th>Serial</th>
-{{--        <th>ID</th>--}}
+        {{--        <th>ID</th>--}}
         <th>Title</th>
+        <th>Image</th>
         <th>Created At</th>
         <th>Updated at</th>
         <th>Action</th>
@@ -21,15 +22,15 @@
     </thead>
 
     <tbody>
-    <?php $id=1;?>
-    @foreach ($c as $d)
+    <?php $id = 1;?>
+    @foreach ($books as $d)
         <tr>
             <td>{{ $id++ }}</td>
-{{--            <td>{{ $d -> id}}</td>--}}
+            {{--            <td>{{ $d -> id}}</td>--}}
             <td>{{ $d -> title}}</td>
+            <td><img src="{{ asset('storage/'.$d->image) }}" alt="" width="100px"></td>
             <td>{{ $d -> created_at -> format('d/m/y') }}</td>
             <td>{{ $d -> updated_at -> format('d/m/y') }}</td>
-
             <td><a href='{{ route('delete.data', $d->id) }}'>Delete</a></td>
         </tr>
 

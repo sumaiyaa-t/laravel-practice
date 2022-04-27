@@ -53,18 +53,28 @@ use App\Book;
 //    return view('User.user_view');
 //});
 //
-Route::get('/delete/{id}',function($id){
-    $c=Book::find($id);
-    $c->delete();
-    return back();
-})->name('delete.data');
+//Route::get('/delete/{id}',function($id){
+//    $c=Book::find($id);
+//    $c->delete();
+//    return back();
+//})->name('delete.data');
 //
-//Auth::routes();
+Auth::routes();
 //
-//Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::middleware('auth')->group(function(){
+    Route::get('/test',function(){
+        return \auth()->user();
+    });
+});
+
 
 
 //-----------CRUD-----------//
 Route::get('index','BookController@index')-> name('book.index');
 Route::get('create','BookController@create');
 Route::post('store','BookController@store')->name('book.store');
+Route::get('edit/{id}', 'BookController@edit')->name('book.edit');
+Route::put('update/{id}', 'BookController@update')->name('book.update');
+Route::delete('delete/{id}', 'BookController@destroy') -> name('book.delete');

@@ -17,7 +17,8 @@
         <th>Image</th>
         <th>Created At</th>
         <th>Updated at</th>
-        <th>Action</th>
+        <th>Update</th>
+        <th>Delete</th>
 
     </thead>
 
@@ -31,7 +32,15 @@
             <td><img src="{{ asset('storage/'.$d->image) }}" alt="" width="100px"></td>
             <td>{{ $d -> created_at -> format('d/m/y') }}</td>
             <td>{{ $d -> updated_at -> format('d/m/y') }}</td>
-            <td><a href='{{ route('delete.data', $d->id) }}'>Delete</a></td>
+            <td><a href='{{ route('book.edit', $d->id) }}'>Update</a></td>
+
+            <td>
+            <form action="{{ route('book.delete', $d->id ) }}" method="post">
+                {{ csrf_field() }}
+                @method('delete')
+                <input type="submit" value="Delete">
+            </form>
+            </td>
         </tr>
 
     @endforeach

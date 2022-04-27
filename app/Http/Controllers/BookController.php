@@ -26,7 +26,35 @@ class BookController extends Controller
         }
         Book::create($inputs);
         return back();
-
     }
+
+    public function edit($id){
+        $books= Book::find($id);
+        return view('crud.edit',compact('books'));
+    }
+
+    public function update($id){
+        $books= Book::find($id);
+        $inputs= \request()->validate([
+            'title' => 'required'
+        ]);
+        if (request('image')) {
+            $inputs['image'] = \request('image')->store('images');
+        }
+        else{
+            $inputs['image']= $books-> image;
+        }
+        $books->update($inputs);
+        return redirect()->route('book.index');
+    }
+
+    public function destroy($id)
+    {
+
+        $books= Book::find($id);
+        $books->delete();
+        return back();
+    }
+
 
 }

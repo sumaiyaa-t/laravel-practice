@@ -8,7 +8,7 @@ use App\Book;
 class BookController extends Controller
 {
     public function index(){
-        $books=Book::all();
+        $books=Book::paginate(1);
         return view('crud.index',compact('books'));
     }
 
@@ -45,6 +45,7 @@ class BookController extends Controller
             $inputs['image']= $books-> image;
         }
         $books->update($inputs);
+        session()->put('update','Updated successfully');
         return redirect()->route('book.index');
     }
 
